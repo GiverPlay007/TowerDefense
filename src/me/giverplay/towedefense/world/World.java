@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import me.giverplay.towedefense.Game;
+import me.giverplay.towedefense.entities.Spawner;
 import me.giverplay.towedefense.graphics.Cores;
 
 public class World
@@ -24,13 +25,19 @@ public class World
 	{
 		game = Game.getGame();
 		
-		initializeWorld(path);
-	}
-	
-	private void initializeWorld(String path)
-	{
 		try
 		{
+			initializeWorld(path);
+		} 
+		catch (IOException | ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("Falha na inicialização do mundo :(");
+			System.exit(-1);
+		}
+	}
+	
+	private void initializeWorld(String path) throws IOException, ArrayIndexOutOfBoundsException
+	{
 			BufferedImage map = ImageIO.read(getClass().getResource(path));
 			
 			width = map.getWidth();
@@ -57,16 +64,16 @@ public class World
 							tiles[index] = new PathTile(xx * TILE_SIZE, yy * TILE_SIZE);
 							break;
 							
+						case Cores.LOC_SPAWNER:
+							tiles[index] = new PathTile(xx * TILE_SIZE, yy * TILE_SIZE);
+							game.addEntity(new Spawner(xx * TILE_SIZE, yy * TILE_SIZE));
+							break;
+							
 						default:
 							break;
 					}
 				}
 			}
-			
-		} catch (IOException e)
-		{
-			System.out.println("Falha ao ler o mapa");
-		}
 	}
 	
 	public void render(Graphics g)

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import me.giverplay.towedefense.Game;
+import me.giverplay.towedefense.entities.Entity;
 
 public class UI
 {

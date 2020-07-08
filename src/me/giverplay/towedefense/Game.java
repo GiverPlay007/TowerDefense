@@ -268,4 +268,14 @@ public class Game extends Canvas implements Runnable
 		this.morreu = true;
 		Sound.lose.play();
 	}
+	
+	public void removeEntity(Entity e)
+	{
+		entities.remove(e);
+	}
+	
+	public void addEntity(Entity e)
+	{
+		entities.add(e);
+	}
 }
