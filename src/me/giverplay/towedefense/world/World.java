@@ -3,10 +3,15 @@ package me.giverplay.towedefense.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
 import me.giverplay.towedefense.Game;
+import me.giverplay.towedefense.algorithms.AStar;
+import me.giverplay.towedefense.algorithms.Node;
+import me.giverplay.towedefense.algorithms.Vector2i;
 import me.giverplay.towedefense.entities.Spawner;
 import me.giverplay.towedefense.graphics.Cores;
 
@@ -15,23 +20,30 @@ public class World
 	public static final int TILE_SIZE = 32;
 	
 	private static Tile[] tiles;
+	private static List<Node> path;
+	
+	private static Vector2i inicio;
+	private static Vector2i fim;
 	
 	private Game game;
 	
 	private int width;
 	private int height;
 	
-	public World(String path)
+	public World(String dir)
 	{
 		game = Game.getGame();
 		
 		try
 		{
-			initializeWorld(path);
+			initializeWorld(dir);
+			path = AStar.findPath(this, inicio, fim);
 		} 
 		catch (IOException | ArrayIndexOutOfBoundsException e)
 		{
-			System.out.println("Falha na inicialização do mundo :(");
+			System.out.println("Falha na inicialização do mundo :(\nErro: " + e.getLocalizedMessage() + "\nCausa: " + e.getCause()
+				+ "\nStacktrace: \n");
+			e.printStackTrace();
 			System.exit(-1);
 		}
 	}
@@ -67,6 +79,12 @@ public class World
 						case Cores.LOC_SPAWNER:
 							tiles[index] = new PathTile(xx * TILE_SIZE, yy * TILE_SIZE);
 							game.addEntity(new Spawner(xx * TILE_SIZE, yy * TILE_SIZE));
+							inicio = new Vector2i(xx, yy);
+							break;
+							
+						case Cores.LOC_END:
+							tiles[index] = new PathTile(xx * TILE_SIZE, yy * TILE_SIZE);
+							fim = new Vector2i(xx, yy);
 							break;
 							
 						default:
@@ -113,6 +131,16 @@ public class World
 	public Tile[] getTiles()
 	{
 		return tiles;
+	}
+	
+	public static List<Node> getPath()
+	{
+		List<Node> nodeL = new ArrayList<>();
+		
+		for(int i = 0; i < path.size(); i++)
+			nodeL.add(path.get(i));
+		
+		return nodeL;
 	}
 	
 	public static boolean canMove(int xn, int yn)

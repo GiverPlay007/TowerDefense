@@ -20,6 +20,10 @@ public class Entity
 	public static final BufferedImage[] SPRITE_ENEMY;
 	
 	public static final BufferedImage SPRITE_SPAWNER;
+	public static final BufferedImage SPRITE_MONEY;
+	public static final BufferedImage SPRITE_HEART_FULL;
+	public static final BufferedImage SPRITE_HEART_NON_FULL;
+	public static final BufferedImage SPRITE_BAR;
 	
 	static
 	{
@@ -35,6 +39,10 @@ public class Entity
 		}
 		
 		SPRITE_SPAWNER = sprites.getSprite(0, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE);
+		SPRITE_MONEY = sprites.getSprite(TILE_SIZE * 2, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE);
+		SPRITE_HEART_FULL = sprites.getSprite(TILE_SIZE, TILE_SIZE * 2, TILE_SIZE / 2, TILE_SIZE / 2);
+		SPRITE_HEART_NON_FULL = sprites.getSprite(TILE_SIZE + TILE_SIZE / 2, TILE_SIZE * 2, TILE_SIZE / 2, TILE_SIZE / 2);
+		SPRITE_BAR = sprites.getSprite(TILE_SIZE, 80, TILE_SIZE, 9);
 	}
 	
 	private static Game game = Game.getGame();
@@ -144,20 +152,20 @@ public class Entity
 				
 				if(x < target.x * World.TILE_SIZE)
 				{
-					x++;
+					x += speed;
 				}
 				else if(x > target.x * World.TILE_SIZE)
 				{
-					x--;
+					x -= speed;
 				}
 				
 				if(y < target.y * World.TILE_SIZE)
 				{
-					y++;
+					y += speed;
 				}
 				else if(y > target.y * World.TILE_SIZE)
 				{
-					y--;
+					y -= speed;
 				}
 				
 				if(x == target.x * World.TILE_SIZE && y == target.y * World.TILE_SIZE)

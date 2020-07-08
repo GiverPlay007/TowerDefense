@@ -20,6 +20,19 @@ public class UI
 	{
 		g.setColor(Color.WHITE);
 		g.setFont(FontUtils.getFont(11, Font.PLAIN));
-		g.drawString("FPS: " + Game.FPS, 2, 12);
+		g.drawString("FPS: " + Game.FPS, 2, Game.HEIGHT - 5);
+		
+		int coe = 24;
+		
+		g.drawImage(Entity.SPRITE_BAR, Game.WIDTH - 80 - coe, coe + 1, 100, 30, null);
+		g.drawImage(Entity.SPRITE_MONEY, Game.WIDTH - coe - 75, coe, null);
+		
+		g.setFont(FontUtils.getFont(14, Font.PLAIN));
+		g.drawString("$" + game.getMoney(), Game.WIDTH -65, 46);
+		
+		for(int i = 0; i < game.getMaxLife(); i++)
+		{
+			g.drawImage(i < game.getLife() ? Entity.SPRITE_HEART_FULL : Entity.SPRITE_HEART_NON_FULL, i * (coe + 5) + 5, 0, coe, coe, null);
+		}
 	}
 }

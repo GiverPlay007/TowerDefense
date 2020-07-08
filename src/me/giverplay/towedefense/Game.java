@@ -48,6 +48,9 @@ public class Game extends Canvas implements Runnable
 	
 	private int gameOverFrames = 0;
 	private int maxGameOverFrames = 30;
+	private int life;
+	private int maxLife;
+	private int money;
 	
 	public static Game getGame()
 	{
@@ -85,6 +88,10 @@ public class Game extends Canvas implements Runnable
 	private void setupAssets()
 	{
 		game = this;
+		
+		life = 10;
+		maxLife = 10;
+		money = 0;
 		
 		entities = new ArrayList<>();
 		
@@ -277,5 +284,45 @@ public class Game extends Canvas implements Runnable
 	public void addEntity(Entity e)
 	{
 		entities.add(e);
+	}
+	
+	public int getLife()
+	{
+		return this.life;
+	}
+	
+	public int getMaxLife()
+	{
+		return this.maxLife;
+	}
+	
+	public void removeLife()
+	{
+		life--;
+	}
+	
+	public void addLife()
+	{
+		life++;
+	}
+	
+	public void addMaxLife()
+	{
+		maxLife++;
+	}
+	
+	public void removeMaxLife()
+	{
+		maxLife--;
+	}
+	
+	public void modiftMoney(int amount)
+	{
+		money += amount;
+	}
+	
+	public int getMoney()
+	{
+		return this.money;
 	}
 }

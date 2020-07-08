@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import me.giverplay.towedefense.Game;
 import me.giverplay.towedefense.sound.Sound;
+import me.giverplay.towedefense.world.World;
 
 public class Enemy extends Entity
 {
@@ -27,12 +28,23 @@ public class Enemy extends Entity
 		
 		anim = coeff;
 		maxAnim = coeff + 3;
+		
+		path = World.getPath();
 	}
 	
 	@Override
 	public void tick()
 	{
-		x++;
+		if(path.size() > 0)
+			followPath(path);
+		else
+			x += speed;
+		
+		if(x > Game.WIDTH)
+		{
+			destroy();
+			game.removeLife();
+		}
 	}
 	
 	@Override

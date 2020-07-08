@@ -23,7 +23,7 @@ public class Spawner extends Entity
 		{
 			time = 0;
 			maxTime = random.nextInt(120 - 60) + 60;
-			Game.getGame().addEntity(new Enemy(getX(), getY(), 1));
+			Game.getGame().addEntity(new Enemy(getX(), getY(), random.nextInt(2) + 1));
 		}
 	}
 }
