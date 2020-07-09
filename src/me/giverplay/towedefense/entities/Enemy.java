@@ -1,5 +1,6 @@
 package me.giverplay.towedefense.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import me.giverplay.towedefense.Game;
@@ -45,6 +46,12 @@ public class Enemy extends Entity
 			destroy();
 			game.removeLife();
 		}
+		
+		if(getLife() <= 0)
+		{
+			destroy();
+			game.modiftMoney(100);
+		}
 	}
 	
 	@Override
@@ -64,6 +71,12 @@ public class Enemy extends Entity
 		}
 		
 		g.drawImage(SPRITE_ENEMY[anim], getX(), getY(), null);
+		
+		g.setColor(Color.RED);
+		g.fillRect(getX(), getY() - 10, calcLife(getMaxLife()), 8);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect(getX(), getY() - 10, calcLife(getLife()), 8);
 	}
 	
 	@Override
@@ -72,4 +85,9 @@ public class Enemy extends Entity
 		super.destroy();
 		Sound.hit2.play();
 	}
+	
+	private int calcLife(double life) 
+  {  	
+  	return (int) (32 * life / 100);
+  }
 }

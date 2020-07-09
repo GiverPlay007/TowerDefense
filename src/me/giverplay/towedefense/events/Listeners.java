@@ -33,6 +33,7 @@ public class Listeners implements MouseListener
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
+		game.getController().handleClick(e.getX(), e.getY());
 	}
 
 	@Override

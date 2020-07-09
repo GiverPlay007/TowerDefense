@@ -24,6 +24,7 @@ public class Entity
 	public static final BufferedImage SPRITE_HEART_FULL;
 	public static final BufferedImage SPRITE_HEART_NON_FULL;
 	public static final BufferedImage SPRITE_BAR;
+	public static final BufferedImage SPRITE_TORRE;
 	
 	static
 	{
@@ -43,6 +44,7 @@ public class Entity
 		SPRITE_HEART_FULL = sprites.getSprite(TILE_SIZE, TILE_SIZE * 2, TILE_SIZE / 2, TILE_SIZE / 2);
 		SPRITE_HEART_NON_FULL = sprites.getSprite(TILE_SIZE + TILE_SIZE / 2, TILE_SIZE * 2, TILE_SIZE / 2, TILE_SIZE / 2);
 		SPRITE_BAR = sprites.getSprite(TILE_SIZE, 80, TILE_SIZE, 9);
+		SPRITE_TORRE = sprites.getSprite(TILE_SIZE * 3, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE);
 	}
 	
 	private static Game game = Game.getGame();
@@ -53,10 +55,13 @@ public class Entity
 	protected double x;
 	protected double y;
 	protected double speed;
+	private double vida = 100;
 	
 	private int width;
 	private int height;
 	private int depth;
+	private int maxVida = 100;
+	
 	
 	private BufferedImage sprite;
 	
@@ -195,4 +200,25 @@ public class Entity
 			return (e1.getDepth() < e0.getDepth() ? +1 : e1.getDepth() > e0.getDepth() ? -1 : 0);
 		}
 	};
+	
+
+	public double getLife()
+	{
+		return vida;
+	}
+	
+	public void modifyLife(double toModify)
+	{
+		vida += toModify;
+		
+		if (vida < 0)
+			vida = 0;
+		if (vida > maxVida)
+			vida = maxVida;
+	}
+	
+	public int getMaxLife()
+	{
+		return this.maxVida;
+	}
 }

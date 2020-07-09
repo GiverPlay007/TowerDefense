@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 
 import me.giverplay.towedefense.entities.Entity;
 import me.giverplay.towedefense.events.Listeners;
+import me.giverplay.towedefense.events.TowerController;
 import me.giverplay.towedefense.graphics.FontUtils;
 import me.giverplay.towedefense.graphics.Spritesheet;
 import me.giverplay.towedefense.graphics.UI;
@@ -34,6 +35,7 @@ public class Game extends Canvas implements Runnable
 	
 	private static Game game;
 	
+	private TowerController controller;
 	private Spritesheet sprite;
 	private World world;
 	private UI ui;
@@ -91,10 +93,11 @@ public class Game extends Canvas implements Runnable
 		
 		life = 10;
 		maxLife = 10;
-		money = 0;
+		money = 300;
 		
 		entities = new ArrayList<>();
 		
+		controller = new TowerController(this);
 		sprite = new Spritesheet("/Spritesheet.png");
 		world = new World("/World.png");
 		
@@ -120,7 +123,8 @@ public class Game extends Canvas implements Runnable
 		try
 		{
 			thread.join();
-		} catch (InterruptedException e)
+		} 
+		catch (InterruptedException e)
 		{
 			e.printStackTrace();
 		}
@@ -180,9 +184,15 @@ public class Game extends Canvas implements Runnable
 	
 	public synchronized void tick()
 	{
+		if(life <= 0)
+		{
+			morreu = true;
+		}
+		
 		if(!morreu && !nextLevel)
 		{
 			for(int i = 0; i < entities.size(); i++) entities.get(i).tick();
+			controller.tick();
 		}
 	}
 	
@@ -269,7 +279,7 @@ public class Game extends Canvas implements Runnable
 	{
 		return this.nextLevel;
 	}
-
+	
 	public void matar()
 	{
 		this.morreu = true;
@@ -324,5 +334,15 @@ public class Game extends Canvas implements Runnable
 	public int getMoney()
 	{
 		return this.money;
+	}
+	
+	public TowerController getController()
+	{
+		return this.controller;
+	}
+	
+	public UI getUI()
+	{
+		return this.ui;
 	}
 }
