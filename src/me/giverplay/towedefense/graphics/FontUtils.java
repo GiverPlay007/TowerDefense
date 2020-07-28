@@ -6,9 +6,11 @@ import java.awt.Graphics;
 import java.io.IOException;
 import java.io.InputStream;
 
+import me.giverplay.towedefense.Game;
+
 public class FontUtils
 {
-	private static InputStream stream = FontUtils.class.getResourceAsStream("/Font.ttf");
+	private static InputStream stream = Game.class.getResourceAsStream("/Font.ttf");
 	private static Font font;
 	
 	static
@@ -23,6 +25,7 @@ public class FontUtils
 		} 
 		catch (IOException e)
 		{
+			e.printStackTrace();
 			System.out.println("Falha na leitura do arquivo de fonte, inicializando com fonte padrão");
 		}
 	}
