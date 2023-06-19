@@ -1,70 +1,57 @@
 package me.giverplay.towedefense.algorithms;
 
-public class Node
-{
-	
-	private Vector2i tile;
-	
-	public Vector2i getTile()
-	{
-		return tile;
-	}
+public class Node {
 
-	public void setTile(Vector2i tile)
-	{
-		this.tile = tile;
-	}
+  private Vector2i tile;
 
-	public Node getParent()
-	{
-		return parent;
-	}
+  public Vector2i getTile() {
+    return tile;
+  }
 
-	public void setParent(Node parent)
-	{
-		this.parent = parent;
-	}
+  public void setTile(Vector2i tile) {
+    this.tile = tile;
+  }
 
-	public double getfCost()
-	{
-		return fCost;
-	}
+  public Node getParent() {
+    return parent;
+  }
 
-	public void setfCost(double fCost)
-	{
-		this.fCost = fCost;
-	}
+  public void setParent(Node parent) {
+    this.parent = parent;
+  }
 
-	public double getgCost()
-	{
-		return gCost;
-	}
+  public double getfCost() {
+    return fCost;
+  }
 
-	public void setgCost(double gCost)
-	{
-		this.gCost = gCost;
-	}
+  public void setfCost(double fCost) {
+    this.fCost = fCost;
+  }
 
-	public double gethCoste()
-	{
-		return hCoste;
-	}
+  public double getgCost() {
+    return gCost;
+  }
 
-	public void sethCoste(double hCoste)
-	{
-		this.hCoste = hCoste;
-	}
+  public void setgCost(double gCost) {
+    this.gCost = gCost;
+  }
 
-	private Node parent;
-	private double fCost, gCost, hCoste;
-	
-	public Node(Vector2i tile, Node parent, double gCost, double hCost)
-	{
-		this.tile = tile;
-		this.parent = parent;
-		this.gCost = gCost;
-		this.hCoste = hCost;
-		this.fCost = gCost + hCost;
-	}
-	
+  public double gethCoste() {
+    return hCoste;
+  }
+
+  public void sethCoste(double hCoste) {
+    this.hCoste = hCoste;
+  }
+
+  private Node parent;
+  private double fCost, gCost, hCoste;
+
+  public Node(Vector2i tile, Node parent, double gCost, double hCost) {
+    this.tile = tile;
+    this.parent = parent;
+    this.gCost = gCost;
+    this.hCoste = hCost;
+    this.fCost = gCost + hCost;
+  }
 }
