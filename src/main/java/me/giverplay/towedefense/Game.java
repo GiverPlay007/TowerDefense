@@ -156,7 +156,7 @@ public class Game extends Canvas implements Runnable {
       }
 
       try {
-        Thread.sleep(4);
+        Thread.sleep(2);
       } catch(Exception ignored) { }
     }
 
