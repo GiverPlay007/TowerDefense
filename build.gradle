@@ -3,12 +3,23 @@ plugins {
 }
 
 group 'me.giverplay'
-version '1.0-SNAPSHOT'
+version '1.0'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+compileJava.options.encoding = 'UTF-8'
+
+jar {
+    manifest {
+        attributes "Main-Class": "me.giverplay.towerdefense.Game"
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+
 }
