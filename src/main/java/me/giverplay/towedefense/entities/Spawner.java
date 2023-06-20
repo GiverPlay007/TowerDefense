@@ -8,7 +8,6 @@ public class Spawner extends Entity {
 
   public Spawner(double x, double y) {
     super(x, y, 32, 32, 0, SPRITE_SPAWNER);
-
     setDepth(2);
   }
 
@@ -17,9 +16,17 @@ public class Spawner extends Entity {
     time++;
 
     if(time >= maxTime) {
+      generate();
       time = 0;
       maxTime = random.nextInt(120 - 60) + 60;
-      Game.getGame().addEntity(new Enemy(getX(), getY(), random.nextInt(2) + 1));
     }
+  }
+
+  private void generate() {
+    Enemy entity = new Enemy(getX(), getY(), random.nextInt(2) + 1);
+    entity.setMaxLife(100);
+    entity.setLife(entity.getMaxLife());
+
+    Game.getGame().addEntity(entity);
   }
 }
