@@ -79,6 +79,6 @@ public class Enemy extends Entity {
   }
 
   private int calcLife(double life) {
-    return (int) (32 * life / 100);
+    return (int) (32 * life / getMaxLife());
   }
 }
