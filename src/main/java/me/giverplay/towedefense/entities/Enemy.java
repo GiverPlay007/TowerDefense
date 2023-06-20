@@ -46,8 +46,7 @@ public class Enemy extends Entity {
 
     if(getLife() <= 0) {
       destroy();
-      game.addLife();
-      game.modifyMoney(100);
+      game.onEnemyDestroy();
     }
   }
 

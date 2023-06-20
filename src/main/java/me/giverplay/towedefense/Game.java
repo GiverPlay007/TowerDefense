@@ -263,7 +263,8 @@ public class Game extends Canvas implements Runnable {
     life--;
   }
 
-  public void addLife() {
+  public void onEnemyDestroy() {
+    modifyMoney(100);
     life++;
 
     if(life > maxLife) life = maxLife;

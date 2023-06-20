@@ -44,10 +44,10 @@ public class Entity {
     SPRITE_TORRE = sprites.getSprite(TILE_SIZE * 3, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE);
   }
 
-  private static final Game game = Game.getGame();
+  protected static final Game game = Game.getGame();
+  protected static final Random random = new Random();
 
   protected List<Node> path;
-  protected static Random random = new Random();
 
   protected double x;
   protected double y;
@@ -57,8 +57,8 @@ public class Entity {
 
   private final int width;
   private final int height;
-  private final int maxLife = 100;
 
+  private int maxLife = 100;
   private int life = 100;
   private int depth;
 
@@ -132,6 +132,14 @@ public class Entity {
       life = 0;
     if(life > maxLife)
       life = maxLife;
+  }
+
+  public void setMaxLife(int maxLife) {
+    this.maxLife = maxLife;
+  }
+
+  public void setLife(int life) {
+    this.life = life;
   }
 
   public int getMaxLife() {
