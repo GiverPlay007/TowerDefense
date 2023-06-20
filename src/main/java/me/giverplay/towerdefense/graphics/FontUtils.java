@@ -1,6 +1,6 @@
-package me.giverplay.towedefense.graphics;
+package me.giverplay.towerdefense.graphics;
 
-import me.giverplay.towedefense.Game;
+import me.giverplay.towerdefense.Game;
 
 import java.awt.Font;
 import java.awt.FontFormatException;

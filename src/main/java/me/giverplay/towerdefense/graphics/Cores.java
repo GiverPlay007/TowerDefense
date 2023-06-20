@@ -1,4 +1,4 @@
-package me.giverplay.towedefense.graphics;
+package me.giverplay.towerdefense.graphics;
 
 public class Cores {
   public static final int TILE_PATH = 0xFFFFFFFF;

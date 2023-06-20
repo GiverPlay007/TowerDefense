@@ -1,6 +1,6 @@
-package me.giverplay.towedefense.entities;
+package me.giverplay.towerdefense.entities;
 
-import me.giverplay.towedefense.Game;
+import me.giverplay.towerdefense.Game;
 
 public class Spawner extends Entity {
   private int maxTime = 1;

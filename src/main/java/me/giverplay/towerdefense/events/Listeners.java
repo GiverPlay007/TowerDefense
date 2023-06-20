@@ -1,6 +1,6 @@
-package me.giverplay.towedefense.events;
+package me.giverplay.towerdefense.events;
 
-import me.giverplay.towedefense.Game;
+import me.giverplay.towerdefense.Game;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

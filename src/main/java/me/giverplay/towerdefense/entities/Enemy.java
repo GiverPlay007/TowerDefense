@@ -1,8 +1,8 @@
-package me.giverplay.towedefense.entities;
+package me.giverplay.towerdefense.entities;
 
-import me.giverplay.towedefense.Game;
-import me.giverplay.towedefense.sound.Sound;
-import me.giverplay.towedefense.world.World;
+import me.giverplay.towerdefense.Game;
+import me.giverplay.towerdefense.sound.Sound;
+import me.giverplay.towerdefense.world.World;
 
 import java.awt.Color;
 import java.awt.Graphics;

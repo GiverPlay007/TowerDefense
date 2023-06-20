@@ -1,4 +1,4 @@
-package me.giverplay.towedefense.sound;
+package me.giverplay.towerdefense.sound;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;

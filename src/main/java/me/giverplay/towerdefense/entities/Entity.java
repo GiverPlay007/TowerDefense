@@ -1,10 +1,10 @@
-package me.giverplay.towedefense.entities;
+package me.giverplay.towerdefense.entities;
 
-import me.giverplay.towedefense.Game;
-import me.giverplay.towedefense.algorithms.Node;
-import me.giverplay.towedefense.algorithms.Vector2i;
-import me.giverplay.towedefense.graphics.Spritesheet;
-import me.giverplay.towedefense.world.World;
+import me.giverplay.towerdefense.Game;
+import me.giverplay.towerdefense.algorithms.Node;
+import me.giverplay.towerdefense.algorithms.Vector2i;
+import me.giverplay.towerdefense.graphics.Spritesheet;
+import me.giverplay.towerdefense.world.World;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -13,7 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-import static me.giverplay.towedefense.world.World.TILE_SIZE;
+import static me.giverplay.towerdefense.world.World.TILE_SIZE;
 
 public class Entity {
   public static final BufferedImage[] SPRITE_ENEMY;

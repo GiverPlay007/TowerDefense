@@ -1,11 +1,11 @@
-package me.giverplay.towedefense.world;
+package me.giverplay.towerdefense.world;
 
-import me.giverplay.towedefense.Game;
-import me.giverplay.towedefense.algorithms.AStar;
-import me.giverplay.towedefense.algorithms.Node;
-import me.giverplay.towedefense.algorithms.Vector2i;
-import me.giverplay.towedefense.entities.Spawner;
-import me.giverplay.towedefense.graphics.Cores;
+import me.giverplay.towerdefense.Game;
+import me.giverplay.towerdefense.algorithms.AStar;
+import me.giverplay.towerdefense.algorithms.Node;
+import me.giverplay.towerdefense.algorithms.Vector2i;
+import me.giverplay.towerdefense.entities.Spawner;
+import me.giverplay.towerdefense.graphics.Cores;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics;

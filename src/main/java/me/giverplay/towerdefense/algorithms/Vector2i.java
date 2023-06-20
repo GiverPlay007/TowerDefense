@@ -1,4 +1,4 @@
-package me.giverplay.towedefense.algorithms;
+package me.giverplay.towerdefense.algorithms;
 
 import java.util.Objects;
 

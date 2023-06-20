@@ -1,7 +1,7 @@
-package me.giverplay.towedefense.algorithms;
+package me.giverplay.towerdefense.algorithms;
 
-import me.giverplay.towedefense.world.Tile;
-import me.giverplay.towedefense.world.World;
+import me.giverplay.towerdefense.world.Tile;
+import me.giverplay.towerdefense.world.World;
 
 import java.util.ArrayList;
 import java.util.Comparator;

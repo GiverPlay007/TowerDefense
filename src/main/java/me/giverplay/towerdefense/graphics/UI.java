@@ -1,7 +1,7 @@
-package me.giverplay.towedefense.graphics;
+package me.giverplay.towerdefense.graphics;
 
-import me.giverplay.towedefense.Game;
-import me.giverplay.towedefense.entities.Entity;
+import me.giverplay.towerdefense.Game;
+import me.giverplay.towerdefense.entities.Entity;
 
 import java.awt.Color;
 import java.awt.Font;

@@ -1,4 +1,4 @@
-package me.giverplay.towedefense.graphics;
+package me.giverplay.towerdefense.graphics;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

@@ -1,11 +1,11 @@
-package me.giverplay.towedefense.world;
+package me.giverplay.towerdefense.world;
 
-import me.giverplay.towedefense.Game;
+import me.giverplay.towerdefense.Game;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import static me.giverplay.towedefense.world.World.TILE_SIZE;
+import static me.giverplay.towerdefense.world.World.TILE_SIZE;
 
 public class Tile {
   private static final Game game = Game.getGame();

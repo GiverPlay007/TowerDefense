@@ -1,13 +1,13 @@
-package me.giverplay.towedefense;
+package me.giverplay.towerdefense;
 
-import me.giverplay.towedefense.entities.Entity;
-import me.giverplay.towedefense.events.Listeners;
-import me.giverplay.towedefense.events.TowerController;
-import me.giverplay.towedefense.graphics.FontUtils;
-import me.giverplay.towedefense.graphics.Spritesheet;
-import me.giverplay.towedefense.graphics.UI;
-import me.giverplay.towedefense.sound.Sound;
-import me.giverplay.towedefense.world.World;
+import me.giverplay.towerdefense.entities.Entity;
+import me.giverplay.towerdefense.events.Listeners;
+import me.giverplay.towerdefense.events.TowerController;
+import me.giverplay.towerdefense.graphics.FontUtils;
+import me.giverplay.towerdefense.graphics.Spritesheet;
+import me.giverplay.towerdefense.graphics.UI;
+import me.giverplay.towerdefense.sound.Sound;
+import me.giverplay.towerdefense.world.World;
 
 import javax.swing.JFrame;
 import java.awt.Canvas;

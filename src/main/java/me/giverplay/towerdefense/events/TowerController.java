@@ -1,12 +1,12 @@
-package me.giverplay.towedefense.events;
+package me.giverplay.towerdefense.events;
 
-import me.giverplay.towedefense.Game;
-import me.giverplay.towedefense.entities.Entity;
-import me.giverplay.towedefense.entities.Tower;
-import me.giverplay.towedefense.graphics.Toast;
-import me.giverplay.towedefense.world.World;
+import me.giverplay.towerdefense.Game;
+import me.giverplay.towerdefense.entities.Entity;
+import me.giverplay.towerdefense.entities.Tower;
+import me.giverplay.towerdefense.graphics.Toast;
+import me.giverplay.towerdefense.world.World;
 
-import static me.giverplay.towedefense.world.World.TILE_SIZE;
+import static me.giverplay.towerdefense.world.World.TILE_SIZE;
 
 public class TowerController {
   private final Game game;
