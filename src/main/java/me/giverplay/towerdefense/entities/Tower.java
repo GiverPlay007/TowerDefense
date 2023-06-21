@@ -10,8 +10,11 @@ public class Tower extends Entity {
 
   private int xa = 0;
   private int ya = 0;
+  private int lastAttack = 0;
 
   private boolean attack = false;
+
+  private Enemy target;
 
   public Tower(int x, int y, int width, int height) {
     super(x, y, width, height, 1, SPRITE_TORRE);
@@ -22,25 +25,31 @@ public class Tower extends Entity {
 
   @Override
   public void tick() {
-    Enemy enemy = null;
+    attack = false;
 
-    for(int i = 0; i < game.getEntities().size(); i++) {
-      Entity e = game.getEntities().get(i);
+    if(target != null && target.removed) target = null;
+    if(game.getTotalTime() - lastAttack < 30) return;
 
-      if(!(e instanceof Enemy))
-        continue;
+    if(target == null) {
+      for(int i = 0; i < game.getEntities().size(); i++) {
+        Entity e = game.getEntities().get(i);
 
-      if(pointDistance(getX() + 16, getY() + 16, e.getX() + 16, e.getY() + 16) < 120) {
-        enemy = (Enemy) e;
+        if(!(e instanceof Enemy))
+          continue;
+
+        if(pointDistance(getX() + 16, getY() + 16, e.getX() + 16, e.getY() + 16) < 120) {
+          target = (Enemy) e;
+        }
       }
     }
 
-    attack = enemy != null;
+    attack = target != null;
 
     if(attack) {
-      xa = enemy.getX() + 16;
-      ya = enemy.getY() + 16;
-      enemy.modifyLife(-1);
+      lastAttack = game.getTotalTime();
+      xa = target.getX() + 16;
+      ya = target.getY() + 16;
+      target.modifyLife(-10);
     }
   }
 

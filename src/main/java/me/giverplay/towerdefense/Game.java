@@ -7,6 +7,7 @@ import me.giverplay.towerdefense.graphics.FontUtils;
 import me.giverplay.towerdefense.graphics.Spritesheet;
 import me.giverplay.towerdefense.graphics.UI;
 import me.giverplay.towerdefense.sound.Sound;
+import me.giverplay.towerdefense.utils.TimeUtils;
 import me.giverplay.towerdefense.world.World;
 
 import javax.swing.JFrame;
@@ -50,6 +51,7 @@ public class Game extends Canvas implements Runnable {
   private int life;
   private int maxLife;
   private int money;
+  private int totalTime;
 
   public static Game getGame() {
     return game;
@@ -86,6 +88,7 @@ public class Game extends Canvas implements Runnable {
     life = 10;
     maxLife = 10;
     money = 300;
+    totalTime = 0;
 
     entities = new ArrayList<>();
     toRemoveEntities = new ArrayList<>();
@@ -147,6 +150,7 @@ public class Game extends Canvas implements Runnable {
 
         delta--;
         fps++;
+        totalTime++;
       }
 
       if(System.currentTimeMillis() - timer >= 1000) {
@@ -155,9 +159,7 @@ public class Game extends Canvas implements Runnable {
         timer += 1000;
       }
 
-      try {
-        Thread.sleep(2);
-      } catch(Exception ignored) { }
+      TimeUtils.sleep(2);
     }
 
     stop();
@@ -284,5 +286,9 @@ public class Game extends Canvas implements Runnable {
 
   public UI getUI() {
     return this.ui;
+  }
+
+  public int getTotalTime() {
+    return totalTime;
   }
 }

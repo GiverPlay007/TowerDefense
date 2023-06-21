@@ -53,6 +53,8 @@ public class Entity {
   protected double y;
   protected double speed;
 
+  protected boolean removed;
+
   private final BufferedImage sprite;
 
   private final int width;
@@ -82,6 +84,7 @@ public class Entity {
   }
 
   public void destroy() {
+    removed = true;
     game.removeEntity(this);
   }
 
@@ -180,5 +183,9 @@ public class Entity {
 
   public BufferedImage getSprite() {
     return this.sprite;
+  }
+
+  public boolean isRemoved() {
+    return removed;
   }
 }
