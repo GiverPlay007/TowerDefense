@@ -1,24 +1,23 @@
 package me.giverplay.towerdefense.entities;
 
-import me.giverplay.towerdefense.Game;
+import me.giverplay.towerdefense.world.World;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
-public class Tower extends Entity {
-  private final Game game;
+public abstract class Tower extends Entity {
 
-  private int xa = 0;
-  private int ya = 0;
-  private int lastAttack = 0;
+  protected int xa = 0;
+  protected int ya = 0;
+  protected int lastAttack = 0;
+  protected int damage = 10;
 
-  private boolean attack = false;
+  protected boolean attack = false;
+  protected Enemy target;
 
-  private Enemy target;
-
-  public Tower(int x, int y, int width, int height) {
-    super(x, y, width, height, 1, SPRITE_TORRE);
-    game = Game.getGame();
+  public Tower(BufferedImage sprite, int x, int y) {
+    super(x, y, World.TILE_SIZE, World.TILE_SIZE, 1, sprite);
 
     setDepth(2);
   }
@@ -27,7 +26,17 @@ public class Tower extends Entity {
   public void tick() {
     attack = false;
 
-    if(target != null && target.removed) target = null;
+    if(target != null) {
+      if(target.removed) {
+        target = null;
+        return;
+      }
+
+      if(pointDistance(getX() + 16, getY() + 16, target.getX() + 16, target.getY() + 16) > 120) {
+        target = null;
+      }
+    }
+
     if(game.getTotalTime() - lastAttack < 30) return;
 
     if(target == null) {
@@ -37,7 +46,7 @@ public class Tower extends Entity {
         if(!(e instanceof Enemy))
           continue;
 
-        if(pointDistance(getX() + 16, getY() + 16, e.getX() + 16, e.getY() + 16) < 120) {
+        if(pointDistance(getX() + 16, getY() + 16, e.getX() + 16, e.getY() + 16) <= 120) {
           target = (Enemy) e;
         }
       }
@@ -49,7 +58,7 @@ public class Tower extends Entity {
       lastAttack = game.getTotalTime();
       xa = target.getX() + 16;
       ya = target.getY() + 16;
-      target.modifyLife(-10);
+      target.modifyLife(-damage);
     }
   }
 

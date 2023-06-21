@@ -1,14 +1,22 @@
 package me.giverplay.towerdefense.graphics;
 
 import me.giverplay.towerdefense.Game;
-import me.giverplay.towerdefense.entities.Entity;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import static me.giverplay.towerdefense.world.World.TILE_SIZE;
+
 public class UI {
+
+  public static final BufferedImage SPRITE_MONEY;
+  public static final BufferedImage SPRITE_HEART_FULL;
+  public static final BufferedImage SPRITE_HEART_NON_FULL;
+  public static final BufferedImage SPRITE_BAR;
+
   private final ArrayList<Toast> toasts = new ArrayList<>();
 
   private final Game game;
@@ -30,18 +38,17 @@ public class UI {
     g.setFont(FontUtils.getFont(11, Font.PLAIN));
     g.drawString("FPS: " + Game.FPS, 2, Game.HEIGHT - 5);
 
+    int x;
+    int y = Game.HEIGHT - 28;
+    int maxLife = game.getMaxLife();
     int coe = 24;
 
-    g.drawImage(Entity.SPRITE_BAR, Game.WIDTH - 80 - coe, coe + 1, 100, 30, null);
-    g.drawImage(Entity.SPRITE_MONEY, Game.WIDTH - coe - 75, coe, null);
-
-    g.setFont(FontUtils.getFont(14, Font.PLAIN));
-    g.drawString("$" + game.getMoney(), Game.WIDTH - 65, 46);
-
-    for(int i = 0; i < game.getMaxLife(); i++) {
-      g.drawImage(i < game.getLife() ? Entity.SPRITE_HEART_FULL : Entity.SPRITE_HEART_NON_FULL, i * (coe + 5) + 5, 0, coe, coe, null);
+    for(int i = 0; i < maxLife; i++) {
+      x = Game.WIDTH - maxLife * 30 + (i * (coe + 5) + 5);
+      g.drawImage(i < game.getLife() ? SPRITE_HEART_FULL : SPRITE_HEART_NON_FULL, x, y, coe, coe, null);
     }
 
+    game.getShop().render(g);
     advanceToast(g);
   }
 
@@ -89,5 +96,14 @@ public class UI {
 
   public void addToast(Toast toast) {
     toasts.add(toast);
+  }
+
+  static {
+    Spritesheet sprites = Game.getGame().getSpritesheet();
+
+    SPRITE_MONEY = sprites.getSprite(TILE_SIZE * 2, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE);
+    SPRITE_HEART_FULL = sprites.getSprite(TILE_SIZE, TILE_SIZE * 2, TILE_SIZE / 2, TILE_SIZE / 2);
+    SPRITE_HEART_NON_FULL = sprites.getSprite(TILE_SIZE + TILE_SIZE / 2, TILE_SIZE * 2, TILE_SIZE / 2, TILE_SIZE / 2);
+    SPRITE_BAR = sprites.getSprite(TILE_SIZE, 80, TILE_SIZE, 9);
   }
 }

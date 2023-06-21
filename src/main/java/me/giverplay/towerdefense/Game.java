@@ -2,11 +2,12 @@ package me.giverplay.towerdefense;
 
 import me.giverplay.towerdefense.entities.Entity;
 import me.giverplay.towerdefense.events.Listeners;
-import me.giverplay.towerdefense.events.TowerController;
+import me.giverplay.towerdefense.tower.TowerController;
 import me.giverplay.towerdefense.graphics.FontUtils;
 import me.giverplay.towerdefense.graphics.Spritesheet;
 import me.giverplay.towerdefense.graphics.UI;
 import me.giverplay.towerdefense.sound.Sound;
+import me.giverplay.towerdefense.tower.Shop;
 import me.giverplay.towerdefense.utils.TimeUtils;
 import me.giverplay.towerdefense.world.World;
 
@@ -38,6 +39,7 @@ public class Game extends Canvas implements Runnable {
   private TowerController controller;
   private Spritesheet sprite;
   private World world;
+  private Shop shop;
   private UI ui;
 
   private Thread thread;
@@ -57,19 +59,13 @@ public class Game extends Canvas implements Runnable {
     return game;
   }
 
-  public Game() {
-    setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
-    setupFrame();
-    setupAssets();
-  }
-
   public static void main(String[] args) {
     Game game = new Game();
     game.start();
   }
 
   private void setupFrame() {
+    setPreferredSize(new Dimension(WIDTH, HEIGHT));
     frame = new JFrame("Game 05 - Tower Defense");
     frame.add(this);
     frame.setResizable(false);
@@ -93,16 +89,19 @@ public class Game extends Canvas implements Runnable {
     entities = new ArrayList<>();
     toRemoveEntities = new ArrayList<>();
 
-    controller = new TowerController(this);
     sprite = new Spritesheet("/Spritesheet.png");
-    world = new World("/World.png");
-
     ui = new UI();
+    shop = new Shop(this);
+    world = new World("/World.png");
+    controller = new TowerController(this);
 
     isDead = false;
   }
 
   public synchronized void start() {
+    setupAssets();
+    setupFrame();
+
     isRunning = true;
     thread = new Thread(this);
     thread.start();
@@ -290,5 +289,9 @@ public class Game extends Canvas implements Runnable {
 
   public int getTotalTime() {
     return totalTime;
+  }
+
+  public Shop getShop() {
+    return shop;
   }
 }

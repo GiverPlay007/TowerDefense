@@ -117,7 +117,7 @@ public class World {
     return new ArrayList<>(path);
   }
 
-  public static boolean canMove(int xn, int yn) {
+  public static boolean isPath(int xn, int yn) {
     int x1 = xn / TILE_SIZE;
     int y1 = yn / TILE_SIZE;
 

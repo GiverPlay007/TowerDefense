@@ -4,6 +4,7 @@ import me.giverplay.towerdefense.Game;
 import me.giverplay.towerdefense.algorithms.Node;
 import me.giverplay.towerdefense.algorithms.Vector2i;
 import me.giverplay.towerdefense.graphics.Spritesheet;
+import me.giverplay.towerdefense.tower.Shop;
 import me.giverplay.towerdefense.world.World;
 
 import java.awt.Graphics;
@@ -19,30 +20,7 @@ public class Entity {
   public static final BufferedImage[] SPRITE_ENEMY;
 
   public static final BufferedImage SPRITE_SPAWNER;
-  public static final BufferedImage SPRITE_MONEY;
-  public static final BufferedImage SPRITE_HEART_FULL;
-  public static final BufferedImage SPRITE_HEART_NON_FULL;
-  public static final BufferedImage SPRITE_BAR;
-  public static final BufferedImage SPRITE_TORRE;
-
-  static {
-    Spritesheet sprites = Game.getGame().getSpritesheet();
-
-    SPRITE_ENEMY = new BufferedImage[9];
-
-    for(int i = 0; i < 4; i++) {
-      SPRITE_ENEMY[i] = sprites.getSprite(i * TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
-      SPRITE_ENEMY[i + 3] = sprites.getSprite((i + 3) * TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
-      SPRITE_ENEMY[i + 5] = sprites.getSprite((i + 5) * TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
-    }
-
-    SPRITE_SPAWNER = sprites.getSprite(0, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE);
-    SPRITE_MONEY = sprites.getSprite(TILE_SIZE * 2, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE);
-    SPRITE_HEART_FULL = sprites.getSprite(TILE_SIZE, TILE_SIZE * 2, TILE_SIZE / 2, TILE_SIZE / 2);
-    SPRITE_HEART_NON_FULL = sprites.getSprite(TILE_SIZE + TILE_SIZE / 2, TILE_SIZE * 2, TILE_SIZE / 2, TILE_SIZE / 2);
-    SPRITE_BAR = sprites.getSprite(TILE_SIZE, 80, TILE_SIZE, 9);
-    SPRITE_TORRE = sprites.getSprite(TILE_SIZE * 3, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE);
-  }
+  public static final BufferedImage SPRITE_TOWER[];
 
   protected static final Game game = Game.getGame();
   protected static final Random random = new Random();
@@ -187,5 +165,23 @@ public class Entity {
 
   public boolean isRemoved() {
     return removed;
+  }
+
+  static {
+    Spritesheet sprites = Game.getGame().getSpritesheet();
+
+    SPRITE_SPAWNER = sprites.getSprite(0, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE);
+    SPRITE_ENEMY = new BufferedImage[9];
+    SPRITE_TOWER = new BufferedImage[Shop.TOTAL_TOWERS];
+
+    for(int i = 0; i < 4; i++) {
+      SPRITE_ENEMY[i] = sprites.getSprite(i * TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      SPRITE_ENEMY[i + 3] = sprites.getSprite((i + 3) * TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      SPRITE_ENEMY[i + 5] = sprites.getSprite((i + 5) * TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+    }
+
+    for(int i = 0; i < Shop.TOTAL_TOWERS; i++) {
+      SPRITE_TOWER[i] = sprites.getSprite(TILE_SIZE * i, TILE_SIZE * 3, TILE_SIZE, TILE_SIZE);
+    }
   }
 }

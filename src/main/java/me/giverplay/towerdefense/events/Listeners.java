@@ -4,13 +4,15 @@ import me.giverplay.towerdefense.Game;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class Listeners implements MouseListener {
+public class Listeners implements MouseListener, MouseMotionListener {
   private final Game game;
 
   public Listeners(Game game) {
     this.game = game;
     this.game.addMouseListener(this);
+    this.game.addMouseMotionListener(this);
   }
 
   @Override
@@ -32,5 +34,14 @@ public class Listeners implements MouseListener {
 
   @Override
   public void mouseReleased(MouseEvent e) {
+  }
+
+  @Override
+  public void mouseDragged(MouseEvent e) {
+  }
+
+  @Override
+  public void mouseMoved(MouseEvent e) {
+    game.getController().handleMouseMove(e.getX(), e.getY());
   }
 }
