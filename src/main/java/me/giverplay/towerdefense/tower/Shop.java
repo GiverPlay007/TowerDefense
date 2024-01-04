@@ -98,6 +98,10 @@ public class Shop {
     return null;
   }
 
+  public void destroyCurrentItem() {
+    currentItem = null;
+  }
+
   public boolean purchase() {
     if(currentItem == null) return false;
 

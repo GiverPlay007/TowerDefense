@@ -29,7 +29,7 @@ public class Listeners implements MouseListener, MouseMotionListener {
 
   @Override
   public void mousePressed(MouseEvent e) {
-    game.getController().handleClick(e.getX(), e.getY());
+    game.getController().handleClick(e.getX(), e.getY(), e.getButton());
   }
 
   @Override

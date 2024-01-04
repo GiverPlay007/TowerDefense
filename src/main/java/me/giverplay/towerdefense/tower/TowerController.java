@@ -6,6 +6,8 @@ import me.giverplay.towerdefense.entities.Tower;
 import me.giverplay.towerdefense.graphics.Toast;
 import me.giverplay.towerdefense.world.World;
 
+import java.awt.event.MouseEvent;
+
 import static me.giverplay.towerdefense.world.World.TILE_SIZE;
 
 public class TowerController {
@@ -17,6 +19,7 @@ public class TowerController {
   private boolean isInPath;
   private boolean isInTower;
   private boolean hasLastClick = false;
+  private int lastClickButton = -1;
   private int lastX = 0;
   private int lastY = 0;
 
@@ -48,14 +51,25 @@ public class TowerController {
       hasLastClick = false;
 
       if(selectedTower != null) {
-        addTower();
+        if(lastClickButton == MouseEvent.BUTTON3) {
+          selectedTower = null;
+          shop.destroyCurrentItem();
+          return;
+        }
+
+        if(lastClickButton == MouseEvent.BUTTON1) {
+          addTower();
+        }
+
         return;
       }
 
-      Tower tower = shop.getTower(lastX, lastY);
+      if(lastClickButton == MouseEvent.BUTTON1) {
+        Tower tower = shop.getTower(lastX, lastY);
 
-      if(tower != null) {
-        selectedTower = tower;
+        if(tower != null) {
+          selectedTower = tower;
+        }
       }
     }
   }
@@ -79,10 +93,11 @@ public class TowerController {
     }
   }
 
-  public void handleClick(int x, int y) {
+  public void handleClick(int x, int y, int button) {
     lastX = x;
     lastY = y;
     hasLastClick = true;
+    lastClickButton = button;
   }
 
   public void handleMouseMove(int x, int y) {
