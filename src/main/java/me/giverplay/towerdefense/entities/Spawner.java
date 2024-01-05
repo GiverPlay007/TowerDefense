@@ -29,7 +29,9 @@ public class Spawner extends Entity {
     if(time >= maxTime) {
       generate();
       time = 0;
-      maxTime = random.nextInt(120 - 60) + 60;
+      maxTime = 60 + random.nextInt(120 - 60) - tier * 5;
+
+      if(maxTime < 10) maxTime = 10;
     }
   }
 
