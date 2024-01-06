@@ -112,7 +112,7 @@ public class Game extends Canvas implements Runnable {
 
     try {
       thread.join();
-    } catch(InterruptedException e) {
+    } catch (InterruptedException e) {
       e.printStackTrace();
     }
   }
@@ -138,12 +138,12 @@ public class Game extends Canvas implements Runnable {
 
     int fps = 0;
 
-    while(isRunning) {
+    while (isRunning) {
       long now = System.nanoTime();
       delta += (now - lastTime) / ns;
       lastTime = now;
 
-      if(delta >= 1) {
+      if (delta >= 1) {
         tick();
         render();
 
@@ -152,7 +152,7 @@ public class Game extends Canvas implements Runnable {
         totalTime++;
       }
 
-      if(System.currentTimeMillis() - timer >= 1000) {
+      if (System.currentTimeMillis() - timer >= 1000) {
         FPS = fps;
         fps = 0;
         timer += 1000;
@@ -165,24 +165,24 @@ public class Game extends Canvas implements Runnable {
   }
 
   public void tick() {
-    if(life <= 0) {
+    if(isDead) return;
+
+    if (life <= 0) {
       handleGameOver();
     }
 
-    if(!isDead) {
-      controller.tick();
+    controller.tick();
 
-      for(int i = 0; i < entities.size(); i++) entities.get(i).tick();
+    for (int i = 0; i < entities.size(); i++) entities.get(i).tick();
 
-      entities.removeAll(toRemoveEntities);
-      toRemoveEntities.clear();
-    }
+    entities.removeAll(toRemoveEntities);
+    toRemoveEntities.clear();
   }
 
   public void render() {
     BufferStrategy bs = this.getBufferStrategy();
 
-    if(bs == null) {
+    if (bs == null) {
       this.createBufferStrategy(3);
       return;
     }
@@ -196,11 +196,11 @@ public class Game extends Canvas implements Runnable {
 
     entities.sort(Entity.sortDepth);
 
-    for(Entity entity : entities) entity.render(g);
+    for (Entity entity : entities) entity.render(g);
 
     ui.render(g);
 
-    if(isDead) {
+    if (isDead) {
       Graphics2D g2 = (Graphics2D) g;
 
       g2.setColor(new Color(0, 0, 0, 100));
@@ -213,12 +213,12 @@ public class Game extends Canvas implements Runnable {
 
       gameOverFrames++;
 
-      if(gameOverFrames > MAX_GAME_OVER_FRAMES) {
+      if (gameOverFrames > MAX_GAME_OVER_FRAMES) {
         gameOverFrames = 0;
         showGameOver = !showGameOver;
       }
 
-      if(showGameOver) {
+      if (showGameOver) {
         g.setFont(FontUtils.getFont(24, Font.BOLD));
         g.drawString("> Aperte ENTER para reiniciar <", (WIDTH - g.getFontMetrics(g.getFont()).stringWidth("> Aperte ENTER para reiniciar <")) / 2, HEIGHT / 2 + 28);
       }
@@ -268,7 +268,7 @@ public class Game extends Canvas implements Runnable {
     modifyMoney(50);
     life++;
 
-    if(life > maxLife) life = maxLife;
+    if (life > maxLife) life = maxLife;
   }
 
   public void modifyMoney(int amount) {
