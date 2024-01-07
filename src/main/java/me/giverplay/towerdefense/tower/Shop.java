@@ -39,7 +39,7 @@ public class Shop {
     this.items = new ArrayList<>();
 
     registerItem(BlueTower.class, Entity.SPRITE_TOWER[0], 100);
-    registerItem(PinkTower.class, Entity.SPRITE_TOWER[1], 850);
+    registerItem(PinkTower.class, Entity.SPRITE_TOWER[1], 750);
   }
 
   public void render(Graphics g) {
