@@ -56,8 +56,7 @@ public class UI {
     int time = 80;
 
     if(!showingToast) {
-      if(toasts.size() == 0)
-        return;
+      if(toasts.isEmpty()) return;
 
       toast = toasts.get(0);
       showingToast = true;
