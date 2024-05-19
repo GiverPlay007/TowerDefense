@@ -16,10 +16,10 @@ public class ShopItem {
     this.cost = cost;
   }
 
-  public Tower create() {
+  public Tower create(int x, int y) {
     try {
       Constructor<?> constructor = itemClass.getConstructor(int.class, int.class);
-      Object tower = constructor.newInstance(0, 0);
+      Object tower = constructor.newInstance(x, y);
       return (Tower) tower;
     } catch(Exception e) {
       e.printStackTrace();

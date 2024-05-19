@@ -16,6 +16,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.giverplay.towerdefense.world.World.TILE_SIZE;
+
 public class Shop {
 
   public static final int TOTAL_TOWERS = 2;
@@ -92,7 +94,7 @@ public class Shop {
     if(x >= BAR_XS && x <= BAR_XF && y >= BAR_YS && y <= BAR_YF) {
       ShopItem item = items.get((x - BAR_XS) / SQUARE_WIDTH);
       currentItem = item;
-      return item.create();
+      return item.create(x / TILE_SIZE * TILE_SIZE, y /  TILE_SIZE * TILE_SIZE);
     }
 
     return null;
