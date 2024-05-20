@@ -12,6 +12,7 @@ public abstract class Tower extends Entity {
   protected int ya = 0;
   protected int lastAttack = 0;
   protected int damage = 10;
+  protected int reach = 120;
 
   protected boolean attack = false;
   protected Enemy target;
@@ -46,7 +47,7 @@ public abstract class Tower extends Entity {
         if(!(e instanceof Enemy))
           continue;
 
-        if(pointDistance(getX() + 16, getY() + 16, e.getX() + 16, e.getY() + 16) <= 120) {
+        if(pointDistance(getX() + 16, getY() + 16, e.getX() + 16, e.getY() + 16) <= reach) {
           target = (Enemy) e;
         }
       }
