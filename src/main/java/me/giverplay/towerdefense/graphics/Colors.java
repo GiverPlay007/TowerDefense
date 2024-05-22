@@ -1,6 +1,6 @@
 package me.giverplay.towerdefense.graphics;
 
-public class Cores {
+public class Colors {
   public static final int TILE_PATH = 0xFFFFFFFF;
 
   public static final int LOC_SPAWNER = 0xFF57007F;

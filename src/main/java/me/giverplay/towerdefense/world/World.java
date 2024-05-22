@@ -5,7 +5,7 @@ import me.giverplay.towerdefense.algorithms.AStar;
 import me.giverplay.towerdefense.algorithms.Node;
 import me.giverplay.towerdefense.algorithms.Vector2i;
 import me.giverplay.towerdefense.entities.Spawner;
-import me.giverplay.towerdefense.graphics.Cores;
+import me.giverplay.towerdefense.graphics.Colors;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics;
@@ -61,17 +61,17 @@ public class World {
         tiles[index] = new GrassTile(xx * TILE_SIZE, yy * TILE_SIZE);
 
         switch(pixels[index]) {
-          case Cores.TILE_PATH:
+          case Colors.TILE_PATH:
             tiles[index] = new PathTile(xx * TILE_SIZE, yy * TILE_SIZE);
             break;
 
-          case Cores.LOC_SPAWNER:
+          case Colors.LOC_SPAWNER:
             tiles[index] = new PathTile(xx * TILE_SIZE, yy * TILE_SIZE);
             game.addEntity(new Spawner(xx * TILE_SIZE, yy * TILE_SIZE));
             start = new Vector2i(xx, yy);
             break;
 
-          case Cores.LOC_END:
+          case Colors.LOC_END:
             tiles[index] = new PathTile(xx * TILE_SIZE, yy * TILE_SIZE);
             end = new Vector2i(xx, yy);
             break;
