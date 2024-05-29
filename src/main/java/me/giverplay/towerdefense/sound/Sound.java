@@ -11,13 +11,23 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Sound {
-  public static GameClip coin = load("/coin.wav");
-  public static GameClip hit = load("/hit.wav");
-  public static GameClip lose = load("/lose.wav");
-  public static GameClip hit2 = load("/hit2.wav");
-  public static GameClip jump = load("/jump.wav");
-  public static GameClip life = load("/life.wav");
-  public static GameClip up = load("/up.wav");
+  public static GameClip coin;
+  public static GameClip hit;
+  public static GameClip lose;
+  public static GameClip hit2;
+  public static GameClip jump;
+  public static GameClip life;
+  public static GameClip up;
+
+  public static void init() {
+    coin = load("/coin.wav");
+    hit = load("/hit.wav");
+    lose = load("/lose.wav");
+    hit2 = load("/hit2.wav");
+    jump = load("/jump.wav");
+    life = load("/life.wav");
+    up = load("/up.wav");
+  }
 
   public static class GameClip {
     public Clip clip;
