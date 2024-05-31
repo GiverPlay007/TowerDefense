@@ -2,12 +2,12 @@ package me.giverplay.towerdefense;
 
 import me.giverplay.towerdefense.entities.Entity;
 import me.giverplay.towerdefense.events.Listeners;
-import me.giverplay.towerdefense.tower.TowerController;
 import me.giverplay.towerdefense.graphics.FontUtils;
 import me.giverplay.towerdefense.graphics.Spritesheet;
 import me.giverplay.towerdefense.graphics.UI;
 import me.giverplay.towerdefense.sound.Sound;
 import me.giverplay.towerdefense.tower.Shop;
+import me.giverplay.towerdefense.tower.TowerController;
 import me.giverplay.towerdefense.utils.TimeUtils;
 import me.giverplay.towerdefense.world.World;
 
@@ -161,8 +161,6 @@ public class Game extends Canvas implements Runnable {
 
       TimeUtils.sleep(2);
     }
-
-    stop();
   }
 
   public void tick() {
